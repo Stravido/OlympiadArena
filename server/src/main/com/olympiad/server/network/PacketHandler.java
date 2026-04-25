@@ -1,4 +1,4 @@
-package main.com.olympiad.client.network;
+package main.com.olympiad.server.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -8,19 +8,20 @@ import main.com.olympiad.shared.packets.MovePacket;
 import main.com.olympiad.shared.packets.Packet;
 
 public class PacketHandler {
-    private final ServerHandler server;
-    private final Gson gson = new Gson();
+    private final ClientHandler client;
+    private final String uid;
+    private static final Gson gson = new Gson();
 
-    public PacketHandler(ServerHandler server) {
-        this.server = server;
+    public PacketHandler(ClientHandler client, String uid) {
+        this.client = client;
+        this.uid = uid;
     }
-
     public void sendPacket(Packet packet) {
-        server.sendPacket(gson.toJson(packet));
+        client.sendPacket(uid,gson.toJson(packet));
     }
 
     public void sendPacket(String raw) {
-        server.sendPacket(raw);
+        client.sendPacket(uid,raw);
     }
 
     public void handlePacket(String raw) {

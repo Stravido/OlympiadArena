@@ -1,4 +1,11 @@
 package main.com.olympiad.shared.packets;
 
-public class Packet {
+public abstract class Packet {
+    private final String type;
+    private final long timestamp;
+
+    public Packet(String type) {
+        this.type = type;
+        this.timestamp = System.currentTimeMillis();
+    }
 }
