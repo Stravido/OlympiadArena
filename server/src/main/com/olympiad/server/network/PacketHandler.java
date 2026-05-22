@@ -25,14 +25,17 @@ public class PacketHandler {
     }
 
     public void handlePacket(String raw) {
-        JsonObject json = gson.fromJson(raw, JsonObject.class);
+        if (raw.startsWith("ACK")) {
+            System.out.println("ACK received: " + raw);
+        }
+        /*JsonObject json = gson.fromJson(raw, JsonObject.class);
         String type = json.get("type").getAsString();
         switch (type) {
             case "move" -> handleMovePacket(gson.fromJson(json, MovePacket.class));
             case "chat" -> handleChatPacket(gson.fromJson(json, ChatPacket.class));
             case "gamestate" -> handleGameStatePacket(gson.fromJson(json, GameStatePacket.class));
             default -> System.out.println("Unknown packet type: " + type);
-        }
+        }*/
     }
 
     public void handleMovePacket(MovePacket packet) {

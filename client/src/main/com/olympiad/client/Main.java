@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class Main {
     private static final int PORT = 12345;
-    private static final String IP = "localhost";
+    private static final String IP = "127.0.0.1";
 
     public static void main(String[] args) {
         try {

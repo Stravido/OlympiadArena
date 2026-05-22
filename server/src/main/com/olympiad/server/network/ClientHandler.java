@@ -1,6 +1,8 @@
 package main.com.olympiad.server.network;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import main.com.olympiad.shared.packets.Packet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +11,10 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class ClientHandler {
+    private static final Gson gson = new Gson();
+
     private static final boolean DEBUG = true;
     private static int clientCount = 0;
 
@@ -35,7 +38,12 @@ public class ClientHandler {
                 ins.put(uid, new BufferedReader(new InputStreamReader(client.getInputStream())));
                 outs.put(uid, new PrintWriter(client.getOutputStream(), true));
                 packetHandlers.put(uid, new PacketHandler(this, uid));
-                new Thread(() -> readLoop(uid)).start();
+
+                //System.out.println(gson.toJson("Hello-Packet", JsonObject.class));
+                sendPacket(uid, "Hello-Packet");
+                new Thread(() -> {
+                    readLoop(uid);
+                }).start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -51,11 +59,14 @@ public class ClientHandler {
                 if (DEBUG) System.out.println(line);
             }
         } catch (IOException e) {
-            System.err.println("Couldnt read input stream: " + e.getMessage());
+            System.err.println("Couldnt read input stream of client " + uid + ": " + e.getMessage());
         }
     }
 
     public void sendPacket(String uid, String raw) {
-        outs.get(uid).println(raw);
+        PrintWriter out = outs.get(uid);
+        System.out.println(out!=null?"Output exists!":"No output found :(");
+        out.println(raw);
+        System.out.println("Packet sent: " + raw);
     }
 }

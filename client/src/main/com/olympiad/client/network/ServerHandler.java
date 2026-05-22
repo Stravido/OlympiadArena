@@ -27,6 +27,7 @@ public class ServerHandler {
     }
 
     public void readLoop() {
+        System.out.println("ReadLoop started by client on port: " + socket.getPort());
         String line;
         try {
             while ((line = in.readLine()) != null) {
@@ -34,7 +35,7 @@ public class ServerHandler {
                 if (DEBUG) System.out.println(line);
             }
         } catch (IOException e) {
-            System.err.println("Could read input stream: " + e.getMessage());
+            System.err.println("Couldn't read input stream: " + e.getMessage());
         }
     }
 
