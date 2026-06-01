@@ -2,25 +2,22 @@ package main.com.olympiad.client.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import main.com.olympiad.shared.packets.ChatPacket;
-import main.com.olympiad.shared.packets.GameStatePacket;
-import main.com.olympiad.shared.packets.MovePacket;
-import main.com.olympiad.shared.packets.Packet;
+import main.com.olympiad.shared.packets.*;
 
 public class PacketHandler {
-    private final ServerHandler server;
+    private final ClientHandler client;
     private final Gson gson = new Gson();
 
-    public PacketHandler(ServerHandler server) {
-        this.server = server;
+    public PacketHandler(ClientHandler client) {
+        this.client = client;
     }
 
     public void sendPacket(Packet packet) {
-        server.sendPacket(gson.toJson(packet));
+        client.sendPacket(gson.toJson(packet));
     }
 
     public void sendPacket(String raw) {
-        server.sendPacket(raw);
+        client.sendPacket(raw);
     }
 
     public void handlePacket(String raw) {
@@ -30,6 +27,7 @@ public class PacketHandler {
             case "move" -> handleMovePacket(gson.fromJson(json, MovePacket.class));
             case "chat" -> handleChatPacket(gson.fromJson(json, ChatPacket.class));
             case "gamestate" -> handleGameStatePacket(gson.fromJson(json, GameStatePacket.class));
+            case "debug" -> handleDebugPacket(gson.fromJson(json, DebugPacket.class));
             default -> System.out.println("Unknown packet type: " + type);
         }
     }
@@ -44,5 +42,9 @@ public class PacketHandler {
 
     public void handleGameStatePacket(GameStatePacket packet) {
 
+    }
+
+    public void handleDebugPacket(DebugPacket packet) {
+        System.out.println("DebugPacket: "+packet.getMsg());
     }
 }

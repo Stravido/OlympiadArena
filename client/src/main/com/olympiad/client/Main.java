@@ -1,6 +1,6 @@
 package main.com.olympiad.client;
 
-import main.com.olympiad.client.network.ServerHandler;
+import main.com.olympiad.client.network.ClientHandler;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -11,8 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            ServerHandler serverHandler = new ServerHandler(new Socket(IP, PORT));
-            System.out.println("Looking for server on port: " + PORT);
+            System.out.println("Looking for server: " + IP + ":" + PORT);
+            ClientHandler clientHandler = new ClientHandler(new Socket(IP, PORT));
         } catch (IOException e) {
             System.out.println("Error on connecting to server: " + e.getMessage());
         }
