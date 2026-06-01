@@ -26,10 +26,7 @@ public class PacketHandler {
 
     public void handlePacket(String raw) {
         if (raw.equals("Hello-Packet")) {
-            System.out.println(raw);
-            System.out.println("Sending ACK");
             sendPacket("ACK Hello-Packet");
-            System.out.println("ACK sent");
         }
         /*JsonObject json = gson.fromJson(raw, JsonObject.class);
         String type = json.get("type").getAsString();

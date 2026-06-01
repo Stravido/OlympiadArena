@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class ClientHandler {
     private static final Gson gson = new Gson();
@@ -53,10 +54,17 @@ public class ClientHandler {
     public void readLoop(String uid) {
         BufferedReader in = ins.get(uid);
         String line;
+        new Thread(() -> {
+            Scanner sc = new Scanner(System.in);
+            String scLine=null;
+           while ((scLine=sc.nextLine())!=null) {
+               sendPacket(uid, scLine);
+           }
+        }).start();
         try {
             while ((line = in.readLine()) != null) {
-                packetHandlers.get(uid).handlePacket(line);
                 if (DEBUG) System.out.println(line);
+                packetHandlers.get(uid).handlePacket(line);
             }
         } catch (IOException e) {
             System.err.println("Couldnt read input stream of client " + uid + ": " + e.getMessage());
@@ -64,9 +72,7 @@ public class ClientHandler {
     }
 
     public void sendPacket(String uid, String raw) {
-        PrintWriter out = outs.get(uid);
-        System.out.println(out!=null?"Output exists!":"No output found :(");
-        out.println(raw);
+        outs.get(uid).println(raw);
         System.out.println("Packet sent: " + raw);
     }
 }

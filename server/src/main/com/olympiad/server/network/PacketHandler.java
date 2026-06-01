@@ -25,9 +25,6 @@ public class PacketHandler {
     }
 
     public void handlePacket(String raw) {
-        if (raw.startsWith("ACK")) {
-            System.out.println("ACK received: " + raw);
-        }
         /*JsonObject json = gson.fromJson(raw, JsonObject.class);
         String type = json.get("type").getAsString();
         switch (type) {

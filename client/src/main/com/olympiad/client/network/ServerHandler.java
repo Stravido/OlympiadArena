@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ServerHandler {
     private static final boolean DEBUG = true;
@@ -29,10 +30,17 @@ public class ServerHandler {
     public void readLoop() {
         System.out.println("ReadLoop started by client on port: " + socket.getPort());
         String line;
+        new Thread(() -> {
+            Scanner sc = new Scanner(System.in);
+            String scLine=null;
+            while((scLine=sc.nextLine())!=null) {
+                sendPacket(scLine);
+            }
+        }).start();
         try {
             while ((line = in.readLine()) != null) {
-                packetHandler.handlePacket(line);
                 if (DEBUG) System.out.println(line);
+                packetHandler.handlePacket(line);
             }
         } catch (IOException e) {
             System.err.println("Couldn't read input stream: " + e.getMessage());
@@ -41,5 +49,6 @@ public class ServerHandler {
 
     public void sendPacket(String raw) {
         out.println(raw);
+        System.out.println("Packet sent: " + raw);
     }
 }
