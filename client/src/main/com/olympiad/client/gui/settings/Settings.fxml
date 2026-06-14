@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="main.com.olympiad.client.gui.settings.SettingsController"
+           stylesheets="@../Scene.css">
+
+    <VBox styleClass="background" alignment="CENTER" spacing="0">
+
+        <VBox alignment="CENTER" styleClass="header">
+            <Label text="EINSTELLUNGEN" styleClass="title"/>
+        </VBox>
+
+        <VBox spacing="20" styleClass="settings-list" VBox.vgrow="ALWAYS">
+
+            <!-- Lautstärke -->
+            <VBox spacing="6">
+                <Label text="LAUTSTÄRKE" styleClass="setting-label"/>
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Slider fx:id="volumeSlider" min="0" max="100" value="100"
+                            styleClass="slider" HBox.hgrow="ALWAYS"
+                            onMouseReleased="#onVolumeChanged"/>
+                    <Label fx:id="volumeValue" text="100%" styleClass="setting-value" minWidth="40"/>
+                </HBox>
+            </VBox>
+
+            <!-- Vollbild -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="setting-row">
+                <Label text="VOLLBILD" styleClass="setting-label" HBox.hgrow="ALWAYS"/>
+                <CheckBox fx:id="fullscreenCheck" styleClass="check" onAction="#onFullscreenToggled"/>
+            </HBox>
+
+            <!-- Musik -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="setting-row">
+                <Label text="MUSIK" styleClass="setting-label" HBox.hgrow="ALWAYS"/>
+                <CheckBox fx:id="musicCheck" selected="true" styleClass="check" onAction="#onMusicToggled"/>
+            </HBox>
+
+        </VBox>
+
+        <VBox alignment="CENTER" styleClass="footer-nav">
+            <Button text="← Zurück" styleClass="btn-back" onAction="#onBack"/>
+        </VBox>
+
+    </VBox>
+</StackPane>

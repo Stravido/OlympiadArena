@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="main.com.olympiad.client.gui.mainmenu.MainMenuController"
+           stylesheets="@../Scene.css">
+
+    <!-- Background -->
+    <VBox styleClass="background" alignment="CENTER" spacing="0">
+
+        <!-- Header -->
+        <VBox alignment="CENTER" styleClass="header" VBox.vgrow="ALWAYS">
+            <Label text="OLYMPIAD" styleClass="title"/>
+            <Label text="ARENA" styleClass="title"/>
+            <Label text="Mini Games Collection" styleClass="subtitle"/>
+        </VBox>
+
+        <!-- Buttons -->
+        <VBox alignment="CENTER" spacing="14" styleClass="menu-buttons">
+            <Button text="Spielen" styleClass="btn-primary" onAction="#onPlay" maxWidth="240"/>
+            <Button text="Einstellungen" styleClass="btn-secondary" onAction="#onSettings" maxWidth="240"/>
+            <Button text="Credits" styleClass="btn-secondary" onAction="#onCredits" maxWidth="240"/>
+            <Button text="Beenden" styleClass="btn-danger" onAction="#onQuit" maxWidth="240"/>
+        </VBox>
+
+        <!-- Footer -->
+        <HBox alignment="CENTER" styleClass="footer">
+            <Label text="v1.0.0" styleClass="version"/>
+        </HBox>
+
+    </VBox>
+</StackPane>

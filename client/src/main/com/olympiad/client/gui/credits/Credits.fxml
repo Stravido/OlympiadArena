@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="main.com.olympiad.client.gui.credits.CreditsController"
+           stylesheets="@../Scene.css">
+
+    <VBox styleClass="background" alignment="CENTER" spacing="0">
+
+        <VBox alignment="CENTER" styleClass="header">
+            <Label text="CREDITS" styleClass="title"/>
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="24" styleClass="credits-list" VBox.vgrow="ALWAYS">
+
+            <VBox alignment="CENTER" spacing="4">
+                <Label text="ENTWICKLUNG" styleClass="credits-role"/>
+                <Label text="Dein Name" styleClass="credits-name"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="4">
+                <Label text="DESIGN" styleClass="credits-role"/>
+                <Label text="Dein Name" styleClass="credits-name"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="4">
+                <Label text="BUILT WITH" styleClass="credits-role"/>
+                <Label text="JavaFX  ·  Java 17" styleClass="credits-name"/>
+            </VBox>
+
+        </VBox>
+
+        <VBox alignment="CENTER" styleClass="footer-nav">
+            <Button text="← Zurück" styleClass="btn-back" onAction="#onBack"/>
+        </VBox>
+
+    </VBox>
+</StackPane>

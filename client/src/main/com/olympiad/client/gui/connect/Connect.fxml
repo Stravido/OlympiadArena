@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="main.com.olympiad.client.gui.connect.ConnectController"
+           stylesheets="@../Scene.css">
+
+    <VBox styleClass="background" alignment="CENTER" spacing="0">
+
+        <VBox alignment="CENTER" styleClass="header">
+            <Label text="SERVER VERBINDEN" styleClass="title"/>
+            <Label text="Gib IP und Port des Servers ein" styleClass="subtitle"/>
+        </VBox>
+
+        <VBox spacing="16" styleClass="connect-form" VBox.vgrow="ALWAYS" alignment="CENTER">
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="IP-ADRESSE" styleClass="setting-label" minWidth="80"/>
+                <TextField fx:id="ipField" text="localhost" styleClass="input-field" HBox.hgrow="ALWAYS" promptText="z.B. 192.168.1.1"/>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="PORT" styleClass="setting-label" minWidth="80"/>
+                <TextField fx:id="portField" text="12345" styleClass="input-field" HBox.hgrow="ALWAYS" promptText="z.B. 12345"/>
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="12" styleClass="connect-buttons">
+                <Button text="Verbinden" styleClass="btn-primary" onAction="#onConnect" prefWidth="160"/>
+                <Button text="Server suchen" styleClass="btn-secondary" onAction="#onScan" prefWidth="160"/>
+            </HBox>
+
+            <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+
+        </VBox>
+
+        <VBox alignment="CENTER" styleClass="footer-nav">
+            <Button text="← Zurück" styleClass="btn-back" onAction="#onBack"/>
+        </VBox>
+
+    </VBox>
+</StackPane>
