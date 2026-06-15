@@ -14,6 +14,7 @@ public class PacketHandler {
 
     public void sendPacket(Packet packet) {
         client.sendPacket(gson.toJson(packet));
+        if (packet instanceof DebugPacket) System.out.println(packet);
     }
 
     public void sendPacket(String raw) {

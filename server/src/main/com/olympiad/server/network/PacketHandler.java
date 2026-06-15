@@ -2,14 +2,12 @@ package main.com.olympiad.server.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import javafx.animation.FadeTransition;
 import main.com.olympiad.shared.packets.*;
 
 public class PacketHandler {
     private final ServerHandler client;
     private final int uid;
     private static final Gson gson = new Gson();
-    FadeTransition fd = new FadeTransition();
 
     public PacketHandler(ServerHandler client, Integer uid) {
         this.client = client;

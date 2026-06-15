@@ -12,8 +12,11 @@ public class Main {
         try {
             ServerHandler serverHandler = new ServerHandler(new ServerSocket(PORT));
             System.out.println("Server started on port: " + PORT);
+
         } catch (IOException e) {
             System.out.println("Could not listen on port: " + PORT);
         }
+
+
     }
 }
