@@ -1,0 +1,146 @@
+/* Erbt das Haupt-Theme, ergänzt nur Dashboard-spezifische Klassen */
+
+.background {
+    -fx-background-color: #0d0d14;
+    -fx-pref-width: 700px;
+    -fx-pref-height: 520px;
+}
+
+.header { -fx-padding: 40 0 10 0; }
+
+.title {
+    -fx-text-fill: #e8e0ff;
+    -fx-font-family: "Segoe UI Black", "Arial Black", sans-serif;
+    -fx-font-size: 42px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 10px;
+    -fx-effect: dropshadow(gaussian, #7c5cbf, 18, 0.5, 0, 0);
+}
+
+.subtitle {
+    -fx-text-fill: #6b5fa0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-letter-spacing: 3px;
+    -fx-padding: 4 0 0 0;
+}
+
+/* ── Cards ── */
+.cards-row {
+    -fx-padding: 20 40 10 40;
+}
+
+.dash-card {
+    -fx-background-color: #1a1728;
+    -fx-padding: 16 20 16 20;
+    -fx-background-radius: 8px;
+    -fx-border-color: #2a2445;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-pref-width: 220px;
+}
+
+.card-eyebrow {
+    -fx-text-fill: #5b3fa0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 10px;
+    -fx-letter-spacing: 3px;
+}
+
+.stat-row { -fx-alignment: CENTER_LEFT; }
+
+.stat-key {
+    -fx-text-fill: #4a3a70;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 12px;
+}
+
+.stat-val {
+    -fx-text-fill: #c8bcf0;
+    -fx-font-family: "Segoe UI Semibold", Arial, sans-serif;
+    -fx-font-size: 12px;
+}
+
+.stat-val-accent {
+    -fx-text-fill: #a080ff;
+    -fx-font-family: "Segoe UI Semibold", Arial, sans-serif;
+    -fx-font-size: 12px;
+}
+
+.stat-val-muted {
+    -fx-text-fill: #6b5fa0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 12px;
+}
+
+/* ── Client Table ── */
+.clients-section {
+    -fx-padding: 0 40 10 40;
+}
+
+.dash-table {
+    -fx-background-color: #1a1728;
+    -fx-table-cell-border-color: #2a2445;
+    -fx-background-radius: 8px;
+    -fx-border-color: #2a2445;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.dash-table .column-header-background {
+    -fx-background-color: #1a1728;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.dash-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #2a2445 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.dash-table .column-header .label {
+    -fx-text-fill: #5b3fa0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 10px;
+    -fx-letter-spacing: 2px;
+}
+
+.dash-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #1e1b2e transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 32px;
+}
+
+.dash-table .table-row-cell:hover {
+    -fx-background-color: #211d35;
+}
+
+.dash-table .table-cell {
+    -fx-text-fill: #c8bcf0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 0 8 0 8;
+    -fx-border-color: transparent;
+}
+
+.dash-table .column-header-background .filler {
+    -fx-background-color: #1a1728;
+}
+
+/* ── Footer ── */
+.footer-nav {
+    -fx-padding: 10 0 28 0;
+}
+
+.btn-danger {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6b4060;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-padding: 8 0 8 0;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-danger:hover { -fx-text-fill: #c0506a; }

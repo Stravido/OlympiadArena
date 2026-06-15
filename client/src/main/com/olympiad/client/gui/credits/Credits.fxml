@@ -20,17 +20,17 @@
 
             <VBox alignment="CENTER" spacing="4">
                 <Label text="ENTWICKLUNG" styleClass="credits-role"/>
-                <Label text="Dein Name" styleClass="credits-name"/>
+                <Label text="David Olariu &amp; Moritz Pitzer" styleClass="credits-name"/>
             </VBox>
 
             <VBox alignment="CENTER" spacing="4">
                 <Label text="DESIGN" styleClass="credits-role"/>
-                <Label text="Dein Name" styleClass="credits-name"/>
+                <Label text="David Olariu &amp; Moritz Pitzer" styleClass="credits-name"/>
             </VBox>
 
             <VBox alignment="CENTER" spacing="4">
                 <Label text="BUILT WITH" styleClass="credits-role"/>
-                <Label text="JavaFX  ·  Java 17" styleClass="credits-name"/>
+                <Label text="JavaFX 21  ·  Java 24" styleClass="credits-name"/>
             </VBox>
 
         </VBox>

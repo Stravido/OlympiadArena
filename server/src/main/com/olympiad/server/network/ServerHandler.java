@@ -1,5 +1,7 @@
 package main.com.olympiad.server.network;
 
+import main.com.olympiad.server.gui.DashboardState;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +22,8 @@ public class ServerHandler {
     private HashMap<Integer, PrintWriter> outs = new HashMap<>();
     /// Saves the individual PacketHandlers for each client via the uid
     private HashMap<Integer, PacketHandler> packetHandlers = new HashMap<>();
-
+    /// Saves the individual Sockets for each client via the uid
+    private HashMap<Integer, Socket> clients = new HashMap<>();
     /**
      * Creates a ServerHandler instance which is used to handle the
      * communication between clients and the server itself
@@ -43,15 +46,21 @@ public class ServerHandler {
             Socket client;
             while (listening) {
                 client = sSocket.accept();
+                if(clients.size()>=2){
+                    System.err.println("Server full, rejected connection from: "+client.getInetAddress().getHostName());
+                    continue;
+                }
                 System.out.println("Accepted connection from client: " + client.getInetAddress().getHostName());
                 final int uid = clientCount++;
+                clients.put(uid,client);
                 ins.put(uid, new BufferedReader(new InputStreamReader(client.getInputStream())));
                 outs.put(uid, new PrintWriter(client.getOutputStream(), true));
                 packetHandlers.put(uid, new PacketHandler(this, uid));
+                DashboardState.instance.addClient(uid);
                 new Thread(() -> readLoop(uid)).start();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Listener-Fehler: " + e.getMessage());
         }
     }
 
@@ -66,12 +75,14 @@ public class ServerHandler {
         try {
             while ((line = in.readLine()) != null) {
                 packetHandlers.get(uid).handlePacket(line);
-                if (DEBUG){
-                    System.err.println("DEBUG: "+line);
-                }
+                DashboardState.instance.packetReceived(uid);
+                if (DEBUG) System.err.println("DEBUG: " + line);
             }
         } catch (IOException e) {
+            removeUser(uid);
             System.err.println("Couldnt read input stream: " + e.getMessage());
+        } finally {
+            DashboardState.instance.removeClient(uid);
         }
     }
 
@@ -83,5 +94,26 @@ public class ServerHandler {
      */
     public void sendPacket(Integer uid, String raw) {
         outs.get(uid).println(raw);
+    }
+    public void removeUser(Integer uid) {
+        try {
+            ins.remove(uid).close();
+            outs.remove(uid).close();
+            clients.remove(uid).close();
+            packetHandlers.remove(uid);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void disconnect() {
+        listening = false;
+        try {
+            sSocket.close();
+            for(int uid : clients.keySet()) removeUser(uid);
+
+        } catch (IOException e) {
+            System.out.println("Fehler beim Schließen: " + e.getMessage());
+        }
     }
 }

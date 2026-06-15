@@ -20,6 +20,10 @@ public class ConnectController {
 
     @FXML
     private void onConnect() {
+        if (MainApp.instance.clientHandler != null) {
+            setStatus("Bereits verbunden!", "status-error");
+            return;
+        }
         String ip = ipField.getText().trim();
         int port;
         try {
@@ -34,7 +38,7 @@ public class ConnectController {
         new Thread(() -> {
             try {
                 Socket socket = new Socket(ip, port);
-                new ClientHandler(socket);
+                MainApp.instance.clientHandler = new ClientHandler(socket);
                 Platform.runLater(() -> setStatus("Verbunden!", "status-success"));
             } catch (IOException e) {
                 Platform.runLater(() -> setStatus("Fehler: " + e.getMessage(), "status-error"));
@@ -44,6 +48,10 @@ public class ConnectController {
 
     @FXML
     private void onScan() {
+        if (MainApp.instance.clientHandler != null) {
+            setStatus("Bereits verbunden!", "status-error");
+            return;
+        }
         setStatus("Suche im lokalen Netzwerk...", "status-info");
 
         new Thread(() -> {
@@ -63,6 +71,7 @@ public class ConnectController {
                     String host = subnet + i;
                     try (Socket s = new Socket()) {
                         s.connect(new java.net.InetSocketAddress(host, port), 50);
+                        MainApp.instance.clientHandler = new ClientHandler(s);
                         final String found = host;
                         Platform.runLater(() -> {
                             ipField.setText(found);

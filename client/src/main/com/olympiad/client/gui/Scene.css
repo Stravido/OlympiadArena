@@ -208,3 +208,70 @@
 .btn-danger:hover {
     -fx-text-fill: #c0506a;
 }
+
+/* ── Tic-Tac-Toe ── */
+
+
+/* ── Player Row ── */
+.player-row {
+    -fx-padding: 10 0 4 0;
+}
+
+.player-label {
+    -fx-text-fill: #5b3fa0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 10px;
+    -fx-letter-spacing: 3px;
+}
+
+.player-score {
+    -fx-text-fill: #c8bcf0;
+    -fx-font-family: "Segoe UI Black", Arial, sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+/* ── Board ── */
+.ttt-board {
+    -fx-padding: 10 0 10 0;
+}
+
+.ttt-cell {
+    -fx-background-color: #1a1728;
+    -fx-text-fill: #e8e0ff;
+    -fx-font-family: "Segoe UI Black", Arial, sans-serif;
+    -fx-font-size: 36px;
+    -fx-font-weight: 900;
+    -fx-pref-width: 110px;
+    -fx-pref-height: 110px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #2a2445;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.ttt-cell:hover {
+    -fx-background-color: #211d35;
+    -fx-border-color: #5b3fa0;
+}
+
+.ttt-cell-x {
+    -fx-text-fill: #a080ff;
+    -fx-effect: dropshadow(gaussian, #7c5cbf, 10, 0.4, 0, 0);
+}
+
+.ttt-cell-o {
+    -fx-text-fill: #c8bcf0;
+}
+
+.ttt-cell-win {
+    -fx-background-color: #2a1f4a;
+    -fx-border-color: #7c5cbf;
+    -fx-effect: dropshadow(gaussian, #7c5cbf, 14, 0.5, 0, 0);
+}
+
+.ttt-cell:disabled {
+    -fx-opacity: 1;
+    -fx-cursor: default;
+}

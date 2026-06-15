@@ -7,6 +7,7 @@ import main.com.olympiad.client.gui.connect.Connect;
 import main.com.olympiad.client.gui.credits.Credits;
 import main.com.olympiad.client.gui.mainmenu.MainMenu;
 import main.com.olympiad.client.gui.settings.Settings;
+import main.com.olympiad.client.gui.tictactoe.TicTacToe;
 
 import java.io.IOException;
 
@@ -40,6 +41,9 @@ public class SceneManager {
                     break;
                 case CONNECT:
                     root = new Connect().buildRoot();
+                    break;
+                case TIC_TAC_TOE:
+                    root = new TicTacToe().buildRoot();
                     break;
                 default:
                     System.out.println("Scene nicht implementiert: " + type);

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.com.olympiad.server.gui.DashboardController"
+      stylesheets="@Dashboard.css"
+      styleClass="background" alignment="CENTER" spacing="0">
+
+    <!-- Header -->
+    <VBox alignment="CENTER" styleClass="header">
+        <Label text="OLYMPIAD" styleClass="title"/>
+        <Label text="ARENA" styleClass="title"/>
+        <Label text="Server Dashboard" styleClass="subtitle"/>
+    </VBox>
+
+    <!-- Cards -->
+    <HBox alignment="CENTER" spacing="24" styleClass="cards-row" VBox.vgrow="ALWAYS">
+
+        <!-- Server -->
+        <VBox styleClass="dash-card" spacing="10">
+            <Label text="SERVER" styleClass="card-eyebrow"/>
+            <VBox spacing="8">
+                <HBox styleClass="stat-row">
+                    <Label text="Port:  " styleClass="stat-key" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="portLabel" text="00000" styleClass="stat-val"/>
+                </HBox>
+                <HBox styleClass="stat-row">
+                    <Label text="Uptime:  " styleClass="stat-key" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="uptimeLabel" text="00:00:00" styleClass="stat-val"/>
+                </HBox>
+                <HBox styleClass="stat-row">
+                    <Label text="Clients:  " styleClass="stat-key" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="clientCountLabel" text="0" styleClass="stat-val-accent"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- Spiel -->
+        <VBox styleClass="dash-card" spacing="10">
+            <Label text="SPIEL" styleClass="card-eyebrow"/>
+            <VBox spacing="8">
+                <HBox styleClass="stat-row">
+                    <Label text="Minigame:  " styleClass="stat-key" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="currentGameLabel" text="—" styleClass="stat-val"/>
+                </HBox>
+                <HBox styleClass="stat-row">
+                    <Label text="Status:  " styleClass="stat-key" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="gameStatusLabel" text="Wartend" styleClass="stat-val-muted"/>
+                </HBox>
+                <HBox styleClass="stat-row">
+                    <Label text="Runde:  " styleClass="stat-key" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="roundLabel" text="—" styleClass="stat-val"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+    </HBox>
+
+    <!-- Client List -->
+    <VBox styleClass="clients-section" spacing="8">
+        <Label text="VERBUNDENE CLIENTS" styleClass="card-eyebrow" VBox.vgrow="NEVER"/>
+        <TableView fx:id="clientTable" styleClass="dash-table" prefHeight="160">
+            <columns>
+                <TableColumn fx:id="colUid"    text="UID  "        prefWidth="60"/>
+                <TableColumn fx:id="colIp"     text="IP  "         prefWidth="160"/>
+                <TableColumn fx:id="colPkts"   text="Pakete  "     prefWidth="90"/>
+                <TableColumn fx:id="colStatus" text="Status  "     prefWidth="110"/>
+                <TableColumn fx:id="colAction" prefWidth="70"/>
+            </columns>
+            <placeholder>
+                <Label text="Keine Clients verbunden" styleClass="stat-key"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+    <!-- Footer -->
+    <VBox alignment="CENTER" styleClass="footer-nav">
+        <Button text="Server beenden" styleClass="btn-danger" onAction="#onStopServer"/>
+    </VBox>
+
+</VBox>

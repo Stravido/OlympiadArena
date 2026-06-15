@@ -58,4 +58,10 @@ public class ClientHandler {
     public void sendPacket(String raw) {
         out.println(raw);
     }
+
+    public void disconnect() throws IOException {
+        socket.close();
+        in.close();
+        out.close();
+    }
 }
