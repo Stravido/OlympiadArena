@@ -1,4 +1,4 @@
-package ticTacToe;
+package main.com.olympiad.client.tictactoe;
 
 public class TicTacToe {
     private int[][] board = new int[3][3];      // 0 -> nothing; 1 -> player 1; 2 -> player 2
@@ -54,6 +54,4 @@ public class TicTacToe {
         board[x][y] = player;
         return true;
     }
-
-
 }
